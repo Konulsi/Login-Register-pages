@@ -1,0 +1,136 @@
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  "
+>
+  <mat-card style="min-width: 30%">
+    <mat-card-content>
+      <mat-card-title>Kayit ol</mat-card-title>
+
+      <form class="d-flex flex-column" [formGroup]="createUserForm">
+        <mat-form-field>
+          <mat-label>Ad</mat-label>
+          <input
+            matInput
+            placeholder="Adinizi giriniz"
+            formControlName="firstName"
+          />
+          <mat-error
+            *ngIf="createUserForm.get('firstName')?.hasError('required')"
+          >
+            Ad zorunludur!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Soyad</mat-label>
+          <input
+            matInput
+            placeholder="Soyadinizi giriniz"
+            formControlName="lastName"
+          />
+          <mat-error
+            *ngIf="createUserForm.get('lastName')?.hasError('required')"
+          >
+            Soyad zorunludur!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Emailinizi giriniz"
+            formControlName="email"
+          />
+          <mat-error *ngIf="createUserForm.get('email')?.hasError('required')">
+            Email zorunludur!
+          </mat-error>
+          <mat-error *ngIf="createUserForm.get('email')?.hasError('email')">
+            Lutfen dogru formatda email giriniz!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Shifre</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Shifrenizi giriniz"
+            formControlName="password"
+          />
+          <mat-error
+            *ngIf="createUserForm.get('password')?.hasError('required')"
+          >
+            Shifre zorunludur!
+          </mat-error>
+          <mat-error
+            *ngIf="createUserForm.get('password')?.hasError('minlength')"
+          >
+            Lutfen minimum 8 karakter giriniz!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tekrar shifre</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="Shifrenizi tekrar giriniz"
+            formControlName="rePassword"
+          />
+          <mat-error
+            *ngIf="createUserForm.get('rePassword')?.hasError('required')"
+          >
+            Shifre zorunludur!
+          </mat-error>
+          <mat-error
+            *ngIf="createUserForm.get('rePassword')?.hasError('minlength')"
+          >
+            Lutfen minimum 8 karakter giriniz!
+          </mat-error>
+          <mat-error
+            *ngIf="createUserForm.get('rePassword')?.hasError('not_the_samne')"
+          >
+            Shifreler eshleshmiyor!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Adres</mat-label>
+          <textarea
+            matInput
+            placeholder="Adresinizi giriniz"
+            formControlName="address"
+          ></textarea>
+          <mat-error
+            *ngIf="createUserForm.get('address')?.hasError('required')"
+          >
+            Email zorunludur!
+          </mat-error>
+        </mat-form-field>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <a style="text-decoration: none; color: black" routerLink="/login"
+            >Girish yap</a
+          >
+          <button
+            [disabled]="createUserForm.invalid"
+            mat-raised-button
+            color="primary"
+          >
+            Kayit ol
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
